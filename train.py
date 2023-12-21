@@ -88,12 +88,12 @@ class TrainModel():
                 # case - not using adj
                 # case using adj include GNN, GNN-Transformer, ....
 
-                X_train_val, X_test, Y_train_val, Y_test = read_data_fnirs_mcnet(
+                data, label = read_data_fnirs_mcnet(
                     fnirs_data_path, model_name, self.hb_path, None)
                 for k in range(num_of_k_fold):
 
                     X_train, Y_train, X_val, Y_val = split_k_fold_cross_validation(
-                        X_train_val, Y_train_val, k, num_of_k_fold)
+                        data, label, k, num_of_k_fold)
 
                     output_directory = os.getcwd() + '/results/' + classifier_name + '/' + \
                         archive + \
@@ -110,8 +110,8 @@ class TrainModel():
 
 
                     input_shape = [self.batch_size,
-                                    X_train_val.shape[1],
-                                    X_train_val.shape[2],
+                                    X_train.shape[1],
+                                    X_train.shape[2],
                                     1]
                     
                     for repeat_count in range(self.repeat_count_all):
@@ -133,7 +133,7 @@ class TrainModel():
                             classifier_name, output_directory, callbacks, input_shape, epochs, self.sweep_config)
 
                         model.fit(X_train, Y_train, X_val,
-                                      Y_val, X_test, Y_test)
+                                      Y_val, X_val, Y_val)
 
                         del model
 

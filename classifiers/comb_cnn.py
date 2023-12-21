@@ -210,7 +210,7 @@ class Classifier_CNN():
         Y_true = np.argmax(Y_test, axis=1)
         # save_validation_acc(self.output_directory, np.argmax(self.model.predict([X_val, adj_val]), axis=1), np.argmax(Y_val, axis=1), self.info['monitor_metric'], self.info)
         val_pred_argmax = np.argmax(self.model.predict( [X_val[:, i, :] for i in range(X_val.shape[1])]), axis=1)
-        save_validation_acc(self.output_directory, val_pred_argmax, np.argmax(Y_val, axis=1), self.info['monitor_metric'], self.info)
+        # save_validation_acc(self.output_directory, val_pred_argmax, np.argmax(Y_val, axis=1), self.info['monitor_metric'], self.info)
         if check_if_save_model(self.output_directory, Y_pred, Y_true, self.info['monitor_metric'], self.info):
             # save learning rate as well
             # Can ignore the result name which has beend set as None
