@@ -1,15 +1,3 @@
-
-"""df_metrics.csv 里面sensitivity计算可能有问题注意修改"""
-"""
-This is used to stage low+mid(8-23) HAMD and High(>=24) HAMD score MDD subjects with label 0 and 1 
-
-Normalization Method: Layer Normalization (Single Sample Normalization)
-
-Data Augmentation: None
-
-"""
-
-
 # 使用当前时间作为随机种子
 from wandb.keras import WandbCallback
 import sys
